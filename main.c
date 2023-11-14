@@ -147,7 +147,7 @@ void removeCharBeforeCursor() {
 }
 
 void insertLineAfterCursor() {
-    chr **newLines = realloc(lines, (lineCount + 1) * sizeof(char *));
+    chr **newLines = realloc(lines, (lineCount + 1) * sizeof(chr *));
     uint *newLineSizes = realloc(lineSizes, (lineCount + 1) * sizeof(uint));
     for (uint i = lineCount; i > cursorLine + 1; i--) {
         newLines[i] = newLines[i - 1];
@@ -155,7 +155,7 @@ void insertLineAfterCursor() {
     }
 
     // normally this should be 0, but malloc(0) is undefined behavior
-    newLines[cursorLine + 1] = malloc(1 * sizeof(char));
+    newLines[cursorLine + 1] = malloc(1 * sizeof(chr));
     lineSizes[cursorLine + 1] = 0;
     lineCount++;
     lines = newLines;
@@ -172,7 +172,7 @@ void onPressSave() {
     for (uint i = 0; i < lineCount; i++) {
         size += lineSizes[i] + (i == lineCount - 1 ? 0 : 1);
     }
-    chr *content = malloc((size + 1) * sizeof(char));
+    chr *content = malloc((size + 1) * sizeof(chr));
 
     uint ind = 0;
     for (uint i = 0; i < lineCount; i++) {
