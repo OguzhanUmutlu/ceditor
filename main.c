@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <signal.h>
 #include <stdlib.h>
 //#include <wchar.h>
@@ -258,7 +257,7 @@ void onPressRightArrow() {
 }
 
 void onPressAnyArrow() {
-    int ch = _getch();
+    int ch = getch();
     switch (ch) {
         case 'H': // up
             onPressUpArrow();
@@ -522,7 +521,7 @@ int main(int argc, char **args) {
 
     signal(SIGINT, handleSIGINT);
 #pragma ide diagnostic ignored "EndlessLoop"
-    while (1) if (_kbhit()) handleKey(_getch());
+    while (1) if (_kbhit()) handleKey(getch());
 }
 
 #pragma clang diagnostic pop

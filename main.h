@@ -87,8 +87,11 @@
 
 #ifdef _WIN32
 #define CLEAR_SCREEN "cls"
+#include <conio.h>
+#define getch _getch
 #else
 #define CLEAR_SCREEN "clear"
+#include <curses.h>
 #endif
 
 #define uint size_t
