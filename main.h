@@ -86,18 +86,23 @@
 #define C_STRIKETHROUGH C_RAW(8)
 
 #ifdef _WIN32
-#define CLEAR_SCREEN "cls"
 
 #include <conio.h>
 
+#define CLEAR_SCREEN "cls"
 #define GET_NEXT_CHARACTER(vr) int vr = _getch()
 #define HANDLE_KEYS(fn) while (1) if (_kbhit()) fn(_getch());
-#else
-#define CLEAR_SCREEN "clear"
+
+#else // _WIN32
+
 #include <curses.h>
+#include <unistd.h>
+
+#define CLEAR_SCREEN "clear"
 #define GET_NEXT_CHARACTER(vr) int vr = getch(); if(vr == ERR) vr = 0
 #define HANDLE_KEYS(fn) int ky; while (1) if ((ky = getch()) != ERR) fn(ky);
-#endif
+
+#endif // _WIN32
 
 #define uint size_t
 #define chr char
