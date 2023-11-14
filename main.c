@@ -257,7 +257,7 @@ void onPressRightArrow() {
 }
 
 void onPressAnyArrow() {
-    int ch = getch();
+    GET_NEXT_CHARACTER(ch);
     switch (ch) {
         case 'H': // up
             onPressUpArrow();
@@ -521,7 +521,7 @@ int main(int argc, char **args) {
 
     signal(SIGINT, handleSIGINT);
 #pragma ide diagnostic ignored "EndlessLoop"
-    while (1) if (_kbhit()) handleKey(getch());
+    HANDLE_KEYS(handleKey);
 }
 
 #pragma clang diagnostic pop
